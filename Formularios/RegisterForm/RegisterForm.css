@@ -31,17 +31,17 @@ select {
 }
 
 input:focus {
-    border-color: #0078d7;
+    border-color: rgb(217,230,255);
     outline: none;
 }
 
 button {
     width: 100%;
     padding: 12px;
-    background-color: #0078d7;
+    background-color: rgb(217,230,255);
     border: none;
     border-radius: 6px;
-    color: white;
+    color: black;
     font-size: 16px;
     cursor: pointer;
     font-weight: 600;

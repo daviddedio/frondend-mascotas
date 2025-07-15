@@ -73,22 +73,20 @@ export const MascotasComponent = () => {
         }
     }
 
-    const deletePet = async (pets) => {
+    const deletePet = async (id) => {
+        console.log(id)
         try {
-            // const rta = await fetch('https://nmdb-alpha.vercel.app/pets', {
-            //     method:'delete',
-            //     headers: {
-            //         'content-type':'application/json',
-            //         'Authorization':`Barer ${token}`
-            //     }
-            // })
-            // const dtos = await rta.json()
-            // setData(dtos)
-
-            console.log(pets)
+            const rta = await fetch(`https://nmdb-alpha.vercel.app/pets/${id}`, {
+                method:'delete',
+                headers: {
+                    'content-type':'application/json',
+                    'Authorization':`Bearer ${login}`
+                }
+            })
+            const dtos = await rta.json()
             getData()
         } catch (error) {
-            setError(error.message)
+            console.log(error.message)
         }
     }
 
