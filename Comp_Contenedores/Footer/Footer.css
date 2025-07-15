@@ -1,0 +1,22 @@
+.footer-container {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('footer.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-container>div {
+    border: 1px solid black;
+    background-color: rgba(150, 148, 148, 0.3);
+    width: 40%;
+    padding-left: 50px;
+    height: 220px;
+    margin: 10px;
+}

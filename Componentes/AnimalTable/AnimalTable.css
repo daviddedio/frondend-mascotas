@@ -16,14 +16,14 @@
     }
 
     thead {
-        color: white;
+        color: black;
     }
 
     thead th {
         position: sticky;
         top: 0;
         z-index: 1;
-        background-color: red;
+        background-color: rgb(215,210,240);
     }
 
     th,

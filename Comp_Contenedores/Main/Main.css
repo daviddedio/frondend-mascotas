@@ -1,5 +1,5 @@
 .navBar {
-    background-color: #0078d7;
+    background-color: rgb(202,225,210);
     padding: 16px 32px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -13,12 +13,18 @@
 }
 
 .navBar li {
-    color: white;
+    color: black;
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .navBar li:hover {
-    color: #b3e0ff;
+    color: red;
+}
+
+.body-main {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

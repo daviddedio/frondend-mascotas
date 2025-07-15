@@ -5,7 +5,7 @@ import { useState } from 'react'
 export const Main = () => {
     const [component, setComponent] = useState(<LoginComponente />)
     return (
-        <div>
+        <div className='body-main'>
             <div className="navBar">
                 <ul>
                     <li onClick={() => setComponent(<LoginComponente />)}>Login</li>
