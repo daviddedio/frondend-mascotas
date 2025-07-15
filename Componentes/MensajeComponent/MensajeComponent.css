@@ -1,0 +1,19 @@
+.mensaje-conteiner{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.mensaje-conteiner>img{
+    width: 50px;
+    height: 50px;
+}
+
+.mensaje-escrito{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,12 @@
+.logOut-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    margin-top: 150px;
+}
+
+.logOut-content>button{
+    width: 350px;
+}

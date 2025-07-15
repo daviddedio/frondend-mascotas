@@ -1,0 +1,68 @@
+.tabs {
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab-labels {
+    display: flex;
+}
+
+.tab-labels label {
+    flex: 1;
+    padding: 12px 20px;
+    text-align: center;
+    background: #e0e0e0;
+    color: #333;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+/* Activar el estilo del tab seleccionado */
+/* #tab1:checked~.tab-labels label[for="tab1"],
+#tab2:checked~.tab-labels label[for="tab2"]  */
+.tab-labels>.tab-selected{
+    background: #ffffff;
+    border-bottom: 2px solid hsl(207, 100%, 42%);
+    color: #0078D7;
+}
+
+.tab-content {
+    background: #fff;
+    border-top: 1px solid #ccc;
+    animation: fadeIn 0.3s ease-in-out;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mostrar contenido basado en el input seleccionado
+#tab1:checked~.tab-content .content1 {
+    display: block;
+}
+
+#tab2:checked~.tab-content .content2 {
+    display: block;
+} */
+
+/* Ocultar los inputs */
+input[type="radio"] {
+    display: none;
+}
+
+/* Animación suave para entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

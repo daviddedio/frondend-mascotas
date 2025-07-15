@@ -1,0 +1,67 @@
+form {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0);
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #0078d7;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0078d7;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005ea1;
+}
+
+.chekcbox-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 12px;
+}
+
+.chekcbox-form>input {
+    height: 16px;
+    margin: auto;
+}

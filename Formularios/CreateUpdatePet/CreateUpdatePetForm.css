@@ -1,0 +1,14 @@
+.form-create-update {
+    width: 500px;
+}
+
+.form-updateCreate-pet {
+    /* imagen local o URL */
+    background-size: cover;
+    /* para que cubra todo el contenedor */
+    background-position: center;
+    /* centra la imagen */
+    background-repeat: no-repeat;
+    padding: 5px;
+    border-radius: 8px;
+}
