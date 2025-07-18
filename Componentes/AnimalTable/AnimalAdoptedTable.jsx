@@ -2,7 +2,7 @@ import { getTypeAnimal, getStatusAdoption} from '../../helper/helper'
 import { UseGlobalContext } from '../../Context/GlobalContext'
 import './AnimalTable.css'
 
-export const AnimalTable = ({ data, deletePets, addUpdatePet, adoptPet }) => {
+export const AnimalAdoptedTable = ({ data, adoptPet}) => {
 
     const { login } = UseGlobalContext()
 
@@ -33,14 +33,8 @@ export const AnimalTable = ({ data, deletePets, addUpdatePet, adoptPet }) => {
                                         {
                                             login &&
                                             <>
-                                                <a className='btn-edit' onClick={(ev) => addUpdatePet(ev, e , "Actualizar", e._id)}>
-                                                    <i className="fa-solid fa-pen-to-square fa-xl"/>
-                                                </a>
-                                                <a className='btn-adopt' onClick={(ev)=>{adoptPet(ev,e._id, e.nombre)}}>
-                                                    <i className="fa-solid fa-heart fa-xl"/>
-                                                </a>
-                                                <a className='btn-delete' onClick={(ev) => deletePets(ev,e._id, e.nombre)}>
-                                                    <i className="fa-solid fa-eraser fa-xl"/>
+                                                <a className='btn-edit' onClick={(ev) => adoptPet(ev, e._id , e.nombre )}>
+                                                    <i className="fa-solid fa-right-from-bracket fa-xl"></i>
                                                 </a>
                                             </>
                                         }

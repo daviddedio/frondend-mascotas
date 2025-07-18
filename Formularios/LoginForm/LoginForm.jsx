@@ -44,7 +44,8 @@ export const LoginForm = () => {
             const response = await res.json()
 
             if (response.token) {
-                setLogin(response.token)
+                setLogin({token: response.token, user: formData.email})
+                console.log({token: response.token, user: formData.email})
                 setComponent(<MensajeComponent titulo={'Login correcto'} imagen={'correcto'}/>)
                 setOpenModal(true)
             } else {

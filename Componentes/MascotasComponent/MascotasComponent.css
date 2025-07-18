@@ -4,22 +4,44 @@
     align-items: center;
 }
 
-.mascota-container-component>a{
-    width: 150px;
+.mascota-container-component>.opciones-op>a{
+    width: 200px;
     border: 1px solid black;
     background-color: rgb(202,225,210);
     border-radius: 5px;
-    height: 25px;
+    height: 50px;
     text-decoration: none;
-    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
     color: black;
+    font-size: 22px;
 }
 
 .mascota-container-component>h1{
     font-size: 48px;
     margin: 0px;
+}
+
+.opciones-op{
+    width: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding:10px 20px 0px 20px;
+    background-color: rgba(0, 0,0,0.1);
+
+}
+
+.filtro-conteiner.filtro-animal{
+    text-align: center;
+}
+
+.filtro-conteiner{
+    width: 250px;
 }

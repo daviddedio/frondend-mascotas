@@ -2,18 +2,22 @@ import './CreateUpdatePetForm.css'
 import { ButtonLoader } from '../../Componentes/Loader/ButtonLoader'
 import { useEffect, useState } from 'react'
 import { UseGlobalContext } from '../../Context/GlobalContext'
+import { returnTipo } from '../../helper/helper'
+import { MensajeComponent } from '../../Componentes/MensajeComponent/MensajeComponent'
 
 export const CreateUpdatePetForm = ({ pet, tipo, funcion, id }) => {
 
     const [loading, setLoadin] = useState(false)
+    const [error, setError] = useState(null)
     const [fondo, setFondo] = useState(pet ? `back${pet.tipo}` : 'backcat')
+
+    const { login, setOpenModal, setComponent } = UseGlobalContext()
 
     const [formData, setFormData] = useState({
         nombre: pet ? pet.nombre : '',
         tipo: pet ? pet.tipo : '',
         raza: pet ? pet.raza : '',
         edad: pet ? pet.edad : 0,
-        adoptado: pet ? pet.adoptado : false,
         descripcion: pet ? pet.descripcion : ''
     });
 
@@ -38,7 +42,46 @@ export const CreateUpdatePetForm = ({ pet, tipo, funcion, id }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setLoadin(true)
-        funcion(tipo, formData, id)
+        createUpdatePets(tipo, formData, id)
+    }
+
+    const createUpdatePets = async (method, pet, id) => {
+        const endPoint = returnTipo(method)
+        var urlApi
+        if (id) {
+            urlApi = `https://nmdb-alpha.vercel.app/pets/${id}`
+        } else {
+            urlApi = "https://nmdb-alpha.vercel.app/pets"
+        }
+
+        try {
+            const rta = await fetch(urlApi,
+                {
+                    method: endPoint,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${login.token}`
+                    },
+                    body: JSON.stringify({
+                        "nombre": pet.nombre,
+                        "tipo": pet.tipo,
+                        "raza": pet.raza,
+                        "edad": Number(pet.edad),
+                        "adoptado": false,
+                        "descripcion": pet.descripcion
+                    })
+                }
+            )
+            const dtos = await rta.json()
+            console.log(dtos)
+            setOpenModal(false)
+            setComponent(<MensajeComponent titulo={"Accion completada con exito"} imagen={"correcto"} />)
+            setOpenModal(true)
+            funcion()
+        } catch (error) {
+            setError(error.message)
+            console.log(error)
+        }
     }
 
     return (
@@ -93,16 +136,6 @@ export const CreateUpdatePetForm = ({ pet, tipo, funcion, id }) => {
                     onChange={handleChange}
                 />
 
-                {/* ADOPTADO? */}
-                <div className='chekcbox-form'>
-                    <label htmlFor="adoptado">Adoptado?</label>
-                    <input
-                        type="checkbox"
-                        name="adoptado"
-                        checked={formData.adoptado || false}
-                        onChange={handleChange}
-                    />
-                </div>
                 <button type="submit">{loading ? <ButtonLoader /> : "Registrar"}</button>
             </form>
         </div>

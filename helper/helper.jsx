@@ -1,13 +1,13 @@
 export const getTypeAnimal = (tipo) => {
     switch (tipo) {
         case "dog":
-            return <i className="fa-solid fa-dog"></i>
+            return <i className="fa-solid fa-dog fa-xl"></i>
             break;
         case "cat":
-            return <i className="fa-solid fa-cat"></i>
+            return <i className="fa-solid fa-cat fa-xl"></i>
             break;
         case "bird":
-            return <i className="fa-solid fa-dove"></i>
+            return <i className="fa-solid fa-dove fa-xl"></i>
             break;
         default:
             break;
@@ -25,4 +25,9 @@ export const getStatusAdoption = (tipo) => {
         default:
             break;
     }
+}
+
+export const returnTipo = (tipo) => {
+    if (tipo === 'Ingresar') { return 'POST' }
+    if (tipo === 'Actualizar') { return 'PUT' }
 }

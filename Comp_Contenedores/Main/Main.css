@@ -28,3 +28,7 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.navBar .li-derecha{
+margin-left: auto;
+}

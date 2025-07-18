@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 import { UseGlobalContext } from '../../Context/GlobalContext'
 import { AnimalTable } from '../AnimalTable/AnimalTable'
 import { CreateUpdatePetForm } from '../../Formularios/CreateUpdatePet/CreateUpdatePetForm'
-import { MensajeComponent } from '../MensajeComponent/MensajeComponent'
 import { LoaderComponent } from '../LoaderComponent/LoaderComponent'
+import { MensajeConfirmComponent } from '../MensajeConfirmComponent/MensajeConfirmComponent'
 
 export const MascotasComponent = () => {
 
@@ -13,13 +13,14 @@ export const MascotasComponent = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const [data, setData] = useState(null)
+    const [superData, setSuperData] = useState(null)
 
     const getData = async () => {
         setLoading(true)
         try {
             const rta = await fetch('https://nmdb-alpha.vercel.app/pets')
             const dtos = await rta.json()
-            setData(dtos)
+            setData(dtos.filter(pet => pet.adoptado == false))
         } catch (error) {
             setError(error.message)
         } finally {
@@ -27,73 +28,36 @@ export const MascotasComponent = () => {
         }
     }
 
-    const returnTipo = (tipo) => {
-        if (tipo === 'Ingresar') { return 'POST' }
-        if (tipo === 'Actualizar') { return 'PUT' }
+    const deletePet = async (e, id, nombre) => {
+        e.preventDefault()
+        setComponent(<MensajeConfirmComponent funcion={getData} id={id} nombre={nombre} tipo={"borrar"} />)
+        setOpenModal(true)
     }
 
-    const createUpdatePets = async (method, pet, id) => {
-        const endPoint = returnTipo(method)
-        var urlApi
-        if (id) {
-            urlApi = `https://nmdb-alpha.vercel.app/pets/${id}`
-        } else {
-            urlApi = "https://nmdb-alpha.vercel.app/pets"
-        }
-
-        try {
-            const rta = await fetch(urlApi,
-                {
-                    method: endPoint,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${login}`
-                    },
-                    body: JSON.stringify({
-                        "nombre": pet.nombre,
-                        "tipo": pet.tipo,
-                        "raza": pet.raza,
-                        "edad": Number(pet.edad),
-                        "adoptado": pet.adoptado,
-                        "descripcion": pet.descripcion
-                    })
-                }
-            )
-            const dtos = await rta.json()
-            setOpenModal(false)
-            setComponent(<MensajeComponent titulo={"Accion completada con exito"} imagen={"correcto"} />)
-            setOpenModal(true)
-            setTimeout(() => {
-                setOpenModal(false)
-            }, 2000);
-            getData()
-        } catch (error) {
-            setError(error.message)
-            console.log(error)
-        }
-    }
-
-    const deletePet = async (id) => {
-        console.log(id)
-        try {
-            const rta = await fetch(`https://nmdb-alpha.vercel.app/pets/${id}`, {
-                method:'delete',
-                headers: {
-                    'content-type':'application/json',
-                    'Authorization':`Bearer ${login}`
-                }
-            })
-            const dtos = await rta.json()
-            getData()
-        } catch (error) {
-            console.log(error.message)
-        }
+    const adoptPet = async (e, id, nombre) => {
+        e.preventDefault()
+        setComponent(<MensajeConfirmComponent funcion={getData} id={id} nombre={nombre} tipo={"adoptar"} />)
+        setOpenModal(true)
     }
 
     const addUpdatePet = (e, pet, method, id) => {
         e.preventDefault()
-        setComponent(<CreateUpdatePetForm pet={pet} tipo={method} funcion={createUpdatePets} id={id} />)
+        setComponent(<CreateUpdatePetForm pet={pet} tipo={method} funcion={getData} id={id} />)
         setOpenModal(true)
+    }
+
+    const filtrarDatos = (e) => {
+        const { value } = e.target
+        if (!superData) {
+            setSuperData(data)
+        }
+
+        if (value == "todo") {
+            setData(superData)
+        } else {
+            const other = superData.filter(e => e.tipo == value)
+            setData(other)
+        }
     }
 
     useEffect(() => { getData() }, [])
@@ -103,9 +67,29 @@ export const MascotasComponent = () => {
             <div className="mascota-container-component">
                 <h1>Listado de mascotas</h1>
                 <p>Cantidad de mascotas disponibles: {data ? data.length : "Calculando"}</p>
-                <a href="" onClick={(e) => addUpdatePet(e, {}, "Ingresar")}><i className="fa-solid fa-plus"></i> Agregar mascota</a>
+                <div className="opciones-op">
+                    {
+                        login &&
+                        <a href="" onClick={(e) => addUpdatePet(e, {}, "Ingresar")}><i className="fa-solid fa-plus"></i> Agregar mascota</a>
+                    }
+                    <div className="filtro-conteiner">
+                        <label htmlFor="filtro-animal">Filtro</label>
+                        <select name="filtro-animal" id="filtro-animal" onChange={(e) => filtrarDatos(e)}>
+                            <option value="todo">...</option>
+                            <option value="cat">Gato</option>
+                            <option value="dog">Perro</option>
+                            <option value="bird">Ave</option>
+                        </select>
+                    </div>
+                </div>
                 {
-                    loading ? <LoaderComponent /> : <AnimalTable data={data} deletePets={deletePet} addUpdatePet={addUpdatePet} />
+                    loading
+                        ? <LoaderComponent />
+                        : <AnimalTable
+                            data={data}
+                            deletePets={deletePet}
+                            addUpdatePet={addUpdatePet}
+                            adoptPet={adoptPet} />
                 }
             </div>
         </>

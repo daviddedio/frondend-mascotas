@@ -6,7 +6,7 @@ export const Footer = () => {
 
                 <div className="proyectos-github">
                     <h2><i className="fa-brands fa-github" /> GitHub</h2>
-                    <ul>
+                    <ul className='links-footer'>
                         <li><a href="https://github.com/daviddedio/NodeMongoDB.git" target='_Blank'>Proyecto Backend</a></li>
                         <li><a href="https://github.com/daviddedio/frondend-mascotas.git" target='_Blank'>
                         Proyecto Frondend</a></li>
@@ -14,7 +14,7 @@ export const Footer = () => {
                 </div>
                 <div className="cv-virtual-conteiner">
                     <h2><i className="fa-solid fa-id-card-clip"/> CV-virtual</h2>
-                    <ul>
+                    <ul className='links-footer'>
                         <li>
                             <a href="https://cv-virtual-ddd.netlify.app/" target='_Blank'>Link a mi cv</a>
                         </li>
@@ -24,8 +24,8 @@ export const Footer = () => {
             <div className="referencias">
                 <h2> <i className="fa-solid fa-robot"/> Backend</h2>
                 <p>Desarrollado siguiendo el curso de LeonardoCastillo79</p>
-                <ul>
-                    <li><a href="www.youtube.com/@LeonardoCastillo79" target='_Blank'>Link perfil YouTube</a></li>
+                <ul className='links-footer'>
+                    <li><a href="https://www.youtube.com/@LeonardoCastillo79" target='_Blank'>Link perfil YouTube</a></li>
                     <li>
                         <a href="https://www.youtube.com/watch?v=BfYOo5yjeWk" target='_Blank'>
                             <i className="fa-brands fa-youtube" />
