@@ -46,10 +46,10 @@ export const LoginForm = () => {
             if (response.token) {
                 setLogin({token: response.token, user: formData.email})
                 console.log({token: response.token, user: formData.email})
-                setComponent(<MensajeComponent titulo={'Login correcto'} imagen={'correcto'}/>)
+                setComponent(<MensajeComponent titulo={'Login correcto'} imagen={"https://firebasestorage.googleapis.com/v0/b/cvelectronicodediodavid.appspot.com/o/correcto.jpg?alt=media&token=4ac613f6-a86a-4b03-a1fa-7f651793d53f"}/>)
                 setOpenModal(true)
             } else {
-                setComponent(<MensajeComponent titulo={'Datos incorrectos'} imagen={"error"}/>)
+                setComponent(<MensajeComponent titulo={'Datos incorrectos'} imagen={"https://firebasestorage.googleapis.com/v0/b/cvelectronicodediodavid.appspot.com/o/error.jpg?alt=media&token=6b3fe85f-2764-4d23-930e-091f289d70e2"}/>)
                 setOpenModal(true)
                 setFormData({
                     email: '',

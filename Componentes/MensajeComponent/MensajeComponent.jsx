@@ -6,7 +6,7 @@ export const MensajeComponent = ({ titulo, mensaje, imagen }) => {
                 <h2>{titulo}</h2>
                 {mensaje && <p>{mensaje}</p>}
             </div>
-            <img src={`${imagen}.jpg`} alt="" />
+            <img src={`${imagen}`} alt="" />
         </div>
     )
 }

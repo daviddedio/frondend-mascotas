@@ -21,9 +21,26 @@ export const CreateUpdatePetForm = ({ pet, tipo, funcion, id }) => {
         descripcion: pet ? pet.descripcion : ''
     });
 
-    const cambiarFondo = (nombre) => {
-        console.log(nombre)
-        setFondo(`back${nombre}`)
+    const imagenBack = (data) => {
+        console.log(data)
+        switch (data) {
+            case "cat":
+                return "https://firebasestorage.googleapis.com/v0/b/cvelectronicodediodavid.appspot.com/o/backcat.jpg?alt=media&token=9cc6856e-cd85-4bb2-a1da-f3693a7365bb"
+                break;
+            case "dog":
+                return "https://firebasestorage.googleapis.com/v0/b/cvelectronicodediodavid.appspot.com/o/backdog.jpg?alt=media&token=febe9bb0-8764-4745-9a16-da39eac24190"
+                break;
+            case "bird":
+                return "https://firebasestorage.googleapis.com/v0/b/cvelectronicodediodavid.appspot.com/o/backbird.jpg?alt=media&token=9df18ccb-6d15-403e-88bd-e6d6e93aa991"
+                break;
+
+            default:
+                break;
+        }
+        //cat
+        return "cat"
+        //dog
+        //bird
     }
 
     const handleChange = (e) => {
@@ -34,7 +51,8 @@ export const CreateUpdatePetForm = ({ pet, tipo, funcion, id }) => {
                     value;
 
         if (type === 'select-one') {
-            cambiarFondo(newValue)
+            const imagen = imagenBack(newValue)
+            setFondo(imagen)
         }
         setFormData(prev => ({ ...prev, [name]: newValue }));
     };
@@ -75,7 +93,7 @@ export const CreateUpdatePetForm = ({ pet, tipo, funcion, id }) => {
             const dtos = await rta.json()
             console.log(dtos)
             setOpenModal(false)
-            setComponent(<MensajeComponent titulo={"Accion completada con exito"} imagen={"correcto"} />)
+            setComponent(<MensajeComponent titulo={"Accion completada con exito"} imagen={"https://firebasestorage.googleapis.com/v0/b/cvelectronicodediodavid.appspot.com/o/correcto.jpg?alt=media&token=4ac613f6-a86a-4b03-a1fa-7f651793d53f"} />)
             setOpenModal(true)
             funcion()
         } catch (error) {
@@ -87,7 +105,7 @@ export const CreateUpdatePetForm = ({ pet, tipo, funcion, id }) => {
     return (
         <div className='form-updateCreate-pet' >
             <h2>{tipo} datos</h2>
-            <form onSubmit={handleSubmit} className='form-create-update' style={{ backgroundImage: `url('${fondo}.jpg')` }}>
+            <form onSubmit={handleSubmit} className='form-create-update' style={{ backgroundImage: `url(${fondo})` }}>
                 <label htmlFor="nombre">Nombre:</label>
                 <input
                     type="text"
